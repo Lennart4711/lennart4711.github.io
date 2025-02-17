@@ -64,7 +64,6 @@ body {
     position: absolute;
     top: 20px;
     right: 35px;
-    font-family: "Apple Color Emoji", sans-serif;
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
@@ -75,7 +74,6 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-family: "Apple Color Emoji", sans-serif;
     font-size: 60px;
     font-weight: bold;
     cursor: pointer;
