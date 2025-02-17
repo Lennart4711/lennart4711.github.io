@@ -1,3 +1,7 @@
+---
+layout: null
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +28,7 @@
     .gallery img {
       width: 100%;
       height: 200px; /* Fixed preview height */
-      object-fit: cover; /* Ensures each preview fills the space */
+      object-fit: cover; /* Crop images to fill the preview area */
       cursor: pointer;
       transition: transform 0.2s;
     }
@@ -105,21 +109,18 @@
     <div id="modal-next" class="modal-arrow right">&#10095;</div>
   </div>
 
+  <!-- Use Jekyll’s Liquid to automatically list all images in /assets/images/to_display -->
+  {% assign photos = site.static_files | where_exp:"file", "file.path contains '/assets/images/to_display/'" %}
   <script>
-    // List your image file names here (they should be located in the "to_display" folder)
+    // The imageFiles array will be auto-populated with the full path of every image found.
     const imageFiles = [
-      "photo1.jpg",
-      "photo2.jpg",
-      "photo3.jpg",
-      "photo4.jpg",
-      "photo5.jpg",
-      "photo6.jpg",
-      "photo7.jpg",
-      "photo8.jpg",
-      "photo9.jpg"
-      // Add more image names as needed
+      {% for file in photos %}
+        "{{ file.path }}"{% unless forloop.last %},{% endunless %}
+      {% endfor %}
     ];
+  </script>
 
+  <script>
     // DOM Elements
     const gallery = document.getElementById('gallery');
     const modal = document.getElementById('modal');
@@ -128,11 +129,11 @@
     const modalPrev = document.getElementById('modal-prev');
     const modalNext = document.getElementById('modal-next');
 
-    // Populate the gallery with images
-    imageFiles.forEach((file, index) => {
+    // Populate the gallery using the imageFiles array
+    imageFiles.forEach((src, index) => {
       const img = document.createElement('img');
-      img.src = 'to_display/' + file;
-      img.alt = file;
+      img.src = src;
+      img.alt = "Photo " + (index + 1);
       img.dataset.index = index;
       gallery.appendChild(img);
     });
@@ -150,7 +151,7 @@
     // Function to open the modal with the selected image
     function openModal(index) {
       modal.style.display = 'flex';
-      modalImg.src = 'to_display/' + imageFiles[index];
+      modalImg.src = imageFiles[index];
     }
 
     // Function to close the modal
@@ -161,11 +162,11 @@
     // Navigation functions for next and previous images
     function showNext() {
       currentIndex = (currentIndex + 1) % imageFiles.length;
-      modalImg.src = 'to_display/' + imageFiles[currentIndex];
+      modalImg.src = imageFiles[currentIndex];
     }
     function showPrev() {
       currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
-      modalImg.src = 'to_display/' + imageFiles[currentIndex];
+      modalImg.src = imageFiles[currentIndex];
     }
 
     // Event listeners for modal controls
