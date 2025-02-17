@@ -28,9 +28,9 @@ body {
     padding: 10px;
   }
   /* Restrict gallery width only on larger screens */
-  @media (min-width: 1400px) { /* Applies only for large screens */
+  @media (min-width: 1600px) { /* Applies only for large screens */
     .gallery {
-      max-width: 60vw; /* Adjust as needed */
+      max-width: 1400px; /* Adjust as needed */
       margin: 0 auto; /* Centers the gallery */
     }
   }
