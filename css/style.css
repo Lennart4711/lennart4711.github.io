@@ -14,21 +14,27 @@ body {
     text-align: center;
     color: #363636;
     font-weight: 400;
-    max-width: 80vw;
+    max-width: 60vw;
     margin: 40px auto;
   }
   
-  /* Flex layout for gallery */
+  /* Responsive gallery width */
   .gallery {
-    max-width: 80vw;
-    margin: 0 auto;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
     padding: 10px;
   }
-  
+  /* Restrict gallery width only on larger screens */
+  @media (min-width: 1024px) { /* Applies only for large screens */
+    .gallery {
+      max-width: 60vw; /* Adjust as needed */
+      margin: 0 auto; /* Centers the gallery */
+    }
+  }
+
   /* Images maintain original aspect ratio with fixed height */
   .gallery img {
     height: 200px; /* Fixed preview height */
@@ -70,6 +76,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     z-index: 1001;
+    display: none;
   }
   
   .modal-arrow {
@@ -82,6 +89,7 @@ body {
     user-select: none;
     z-index: 1001;
     padding: 10px;
+    display: none
   }
   
   .modal-arrow.left {
