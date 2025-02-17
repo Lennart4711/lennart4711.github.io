@@ -1,19 +1,20 @@
 /* Basic reset and typography */
 body {
     margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+    padding: 40px 0; /* Extra whitespace at top and bottom */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #e8e8e8;
-    color: #fff;
+    color: #363636;
+    font-weight: 300;
   }
   
   /* Page title styling */
   .page-title {
-    font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
     text-align: center;
-    margin: 20px 0;
-    color: #fff;
+    margin: 40px 0; /* More vertical spacing */
+    color: #363636;
+    font-weight: 400;
   }
   
   /* Flex layout for gallery */
@@ -28,7 +29,7 @@ body {
   /* Images maintain original aspect ratio with fixed height */
   .gallery img {
     height: 200px; /* Fixed preview height */
-    width: auto;   /* Width adjusts to preserve aspect ratio */
+    width: auto;   /* Preserve aspect ratio */
     cursor: pointer;
     transition: transform 0.2s;
   }
@@ -58,11 +59,12 @@ body {
     margin: auto;
   }
   
+  /* Apple‑style controls using emoji */
   .modal-close {
     position: absolute;
     top: 20px;
     right: 35px;
-    color: #fff;
+    font-family: "Apple Color Emoji", sans-serif;
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
@@ -73,7 +75,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: #fff;
+    font-family: "Apple Color Emoji", sans-serif;
     font-size: 60px;
     font-weight: bold;
     cursor: pointer;
