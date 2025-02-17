@@ -25,14 +25,22 @@ layout: null
       grid-gap: 10px;
       padding: 10px;
     }
-    .gallery img {
-      width: 100%;
-      height: 200px; /* Fixed preview height */
-      object-fit: cover; /* Crop images to fill the preview area */
+    /* Each gallery item is a fixed-height container */
+    .gallery-item {
+      height: 200px; /* Set your desired fixed preview height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    /* Images keep original aspect ratio while filling the height */
+    .gallery-item img {
+      max-height: 100%;
+      width: auto;
       cursor: pointer;
       transition: transform 0.2s;
     }
-    .gallery img:hover {
+    .gallery-item img:hover {
       transform: scale(1.05);
     }
 
@@ -89,7 +97,7 @@ layout: null
       .gallery {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       }
-      .gallery img {
+      .gallery-item {
         height: 150px;
       }
     }
@@ -112,7 +120,7 @@ layout: null
   <!-- Use Jekyll’s Liquid to automatically list all images in /assets/images/to_display -->
   {% assign photos = site.static_files | where_exp:"file", "file.path contains '/assets/images/to_display/'" %}
   <script>
-    // The imageFiles array will be auto-populated with the full path of every image found.
+    // The imageFiles array is auto-populated with the full path of every image found.
     const imageFiles = [
       {% for file in photos %}
         "{{ file.path }}"{% unless forloop.last %},{% endunless %}
@@ -131,11 +139,16 @@ layout: null
 
     // Populate the gallery using the imageFiles array
     imageFiles.forEach((src, index) => {
+      // Create a container div for each image to enforce the fixed height.
+      const item = document.createElement('div');
+      item.classList.add('gallery-item');
+
       const img = document.createElement('img');
       img.src = src;
       img.alt = "Photo " + (index + 1);
       img.dataset.index = index;
-      gallery.appendChild(img);
+      item.appendChild(img);
+      gallery.appendChild(item);
     });
 
     let currentIndex = 0;
