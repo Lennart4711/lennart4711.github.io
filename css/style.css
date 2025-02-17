@@ -32,7 +32,6 @@ body {
     width: auto;   /* Preserve aspect ratio */
     cursor: pointer;
     transition: transform 0.2s;
-    pointer-events: none;
   }
   
   .gallery img:hover {
@@ -60,7 +59,6 @@ body {
     margin: auto;
   }
   
-  /* Apple‑style controls using emoji */
   .modal-close {
     position: absolute;
     top: 20px;
