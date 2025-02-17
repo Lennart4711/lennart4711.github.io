@@ -22,12 +22,12 @@ layout: null
 
   <!-- Modal for enlarged image view -->
   <div id="modal" class="modal">
-    <span id="modal-close" class="modal-close">❌</span>
-    <div id="modal-prev" class="modal-arrow left">⬅️</div>
+    <span id="modal-close" class="modal-close">&times;</span>
+    <div id="modal-prev" class="modal-arrow left">&#10094;</div>
     <img id="modal-img" src="" alt="Enlarged view" />
-    <div id="modal-next" class="modal-arrow right">➡️</div>
+    <div id="modal-next" class="modal-arrow right">&#10095;</div>
   </div>
-
+  
   <!-- Liquid templating to list all images in /assets/images/to_display -->
   {% assign photos = site.static_files | where_exp:"file", "file.path contains '/assets/images/to_display/'" %}
   <script>
