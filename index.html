@@ -13,7 +13,7 @@ layout: null
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <h1 class="page-title">Hey, you found the photos of me, Lennart 👋. Have a look around.</h1>
+  <h1 class="page-title">Hey, you found the photos of me, Lennart 👋. Have a look around:</h1>
 
   <!-- Gallery Container -->
   <div class="gallery" id="gallery">
@@ -27,7 +27,7 @@ layout: null
     <img id="modal-img" src="" alt="Enlarged view" />
     <div id="modal-next" class="modal-arrow right">&#10095;</div>
   </div>
-  
+
   <!-- Liquid templating to list all images in /assets/images/to_display -->
   {% assign photos = site.static_files | where_exp:"file", "file.path contains '/assets/images/to_display/'" %}
   <script>
