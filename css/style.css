@@ -32,6 +32,7 @@ body {
     width: auto;   /* Preserve aspect ratio */
     cursor: pointer;
     transition: transform 0.2s;
+    pointer-events: none;
   }
   
   .gallery img:hover {
