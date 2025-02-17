@@ -12,13 +12,16 @@ body {
   .page-title {
     font-size: 2.5rem;
     text-align: center;
-    margin: 40px 0; /* More vertical spacing */
     color: #363636;
     font-weight: 400;
+    max-width: 80vw;
+    margin: 40px auto;
   }
   
   /* Flex layout for gallery */
   .gallery {
+    max-width: 80vw;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
