@@ -18,29 +18,22 @@ layout: null
       color: #fff;
     }
 
-    /* Gallery grid layout */
+    /* Flex layout for gallery */
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      grid-gap: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
       padding: 10px;
     }
-    /* Each gallery item is a fixed-height container */
-    .gallery-item {
-      height: 200px; /* Set your desired fixed preview height */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-    /* Images keep original aspect ratio while filling the height */
-    .gallery-item img {
-      max-height: 100%;
-      width: auto;
+    /* Images maintain original aspect ratio with fixed height */
+    .gallery img {
+      height: 200px; /* Fixed preview height */
+      width: auto;   /* Width adjusts to preserve aspect ratio */
       cursor: pointer;
       transition: transform 0.2s;
     }
-    .gallery-item img:hover {
+    .gallery img:hover {
       transform: scale(1.05);
     }
 
@@ -94,10 +87,7 @@ layout: null
 
     /* Responsive adjustments */
     @media (max-width: 600px) {
-      .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      }
-      .gallery-item {
+      .gallery img {
         height: 150px;
       }
     }
@@ -117,10 +107,10 @@ layout: null
     <div id="modal-next" class="modal-arrow right">&#10095;</div>
   </div>
 
-  <!-- Use Jekyll’s Liquid to automatically list all images in /assets/images/to_display -->
+  <!-- Liquid templating to list all images in /assets/images/to_display -->
   {% assign photos = site.static_files | where_exp:"file", "file.path contains '/assets/images/to_display/'" %}
   <script>
-    // The imageFiles array is auto-populated with the full path of every image found.
+    // Auto-populate imageFiles with the full path of every image found.
     const imageFiles = [
       {% for file in photos %}
         "{{ file.path }}"{% unless forloop.last %},{% endunless %}
@@ -139,16 +129,11 @@ layout: null
 
     // Populate the gallery using the imageFiles array
     imageFiles.forEach((src, index) => {
-      // Create a container div for each image to enforce the fixed height.
-      const item = document.createElement('div');
-      item.classList.add('gallery-item');
-
       const img = document.createElement('img');
       img.src = src;
       img.alt = "Photo " + (index + 1);
       img.dataset.index = index;
-      item.appendChild(img);
-      gallery.appendChild(item);
+      gallery.appendChild(img);
     });
 
     let currentIndex = 0;
