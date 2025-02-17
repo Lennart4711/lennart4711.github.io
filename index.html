@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photography Portfolio</title>
+  <style>
+    /* Basic reset and typography */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+
+    /* Gallery grid layout */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-gap: 10px;
+      padding: 10px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 200px; /* Fixed preview height */
+      object-fit: cover; /* Ensures each preview fills the space */
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Modal overlay styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      display: block;
+      margin: auto;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .modal-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      font-size: 60px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      z-index: 1001;
+      padding: 10px;
+    }
+    .modal-arrow.left {
+      left: 20px;
+    }
+    .modal-arrow.right {
+      right: 20px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+      .gallery img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Gallery Container -->
+  <div class="gallery" id="gallery">
+    <!-- Images will be injected here by JavaScript -->
+  </div>
+
+  <!-- Modal for enlarged image view -->
+  <div id="modal" class="modal">
+    <span id="modal-close" class="modal-close">&times;</span>
+    <div id="modal-prev" class="modal-arrow left">&#10094;</div>
+    <img id="modal-img" src="" alt="Enlarged view" />
+    <div id="modal-next" class="modal-arrow right">&#10095;</div>
+  </div>
+
+  <script>
+    // List your image file names here (they should be located in the "to_display" folder)
+    const imageFiles = [
+      "photo1.jpg",
+      "photo2.jpg",
+      "photo3.jpg",
+      "photo4.jpg",
+      "photo5.jpg",
+      "photo6.jpg",
+      "photo7.jpg",
+      "photo8.jpg",
+      "photo9.jpg"
+      // Add more image names as needed
+    ];
+
+    // DOM Elements
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalClose = document.getElementById('modal-close');
+    const modalPrev = document.getElementById('modal-prev');
+    const modalNext = document.getElementById('modal-next');
+
+    // Populate the gallery with images
+    imageFiles.forEach((file, index) => {
+      const img = document.createElement('img');
+      img.src = 'to_display/' + file;
+      img.alt = file;
+      img.dataset.index = index;
+      gallery.appendChild(img);
+    });
+
+    let currentIndex = 0;
+
+    // Open modal when an image is clicked
+    gallery.addEventListener('click', (e) => {
+      if (e.target && e.target.nodeName === 'IMG') {
+        currentIndex = parseInt(e.target.dataset.index, 10);
+        openModal(currentIndex);
+      }
+    });
+
+    // Function to open the modal with the selected image
+    function openModal(index) {
+      modal.style.display = 'flex';
+      modalImg.src = 'to_display/' + imageFiles[index];
+    }
+
+    // Function to close the modal
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    // Navigation functions for next and previous images
+    function showNext() {
+      currentIndex = (currentIndex + 1) % imageFiles.length;
+      modalImg.src = 'to_display/' + imageFiles[currentIndex];
+    }
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
+      modalImg.src = 'to_display/' + imageFiles[currentIndex];
+    }
+
+    // Event listeners for modal controls
+    modalClose.addEventListener('click', closeModal);
+    modalNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showNext();
+    });
+    modalPrev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showPrev();
+    });
+
+    // Close modal when clicking outside the image
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Keyboard navigation: right arrow for next, left arrow for previous, escape to close
+    document.addEventListener('keydown', (e) => {
+      if (modal.style.display === 'flex') {
+        if (e.key === 'ArrowRight') {
+          showNext();
+        } else if (e.key === 'ArrowLeft') {
+          showPrev();
+        } else if (e.key === 'Escape') {
+          closeModal();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
