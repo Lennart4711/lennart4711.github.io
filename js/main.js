@@ -9,6 +9,8 @@ const modalNext = document.getElementById('modal-next');
 let startX = 0;
 let currentIndex = 0;
 
+// Show newest photos first
+imageFiles.reverse()
 // Populate the gallery using the imageFiles array (provided via Liquid)
 imageFiles.forEach((src, index) => {
   const img = document.createElement('img');
