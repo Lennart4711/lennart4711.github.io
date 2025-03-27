@@ -14,9 +14,12 @@ imageFiles.reverse()
 // Populate the gallery using the imageFiles array (provided via Liquid)
 imageFiles.forEach((src, index) => {
   const img = document.createElement('img');
-  img.src = src;
+  img.src = src; // Default low-resolution version (initially loaded small)
   img.alt = "Photo " + (index + 1);
   img.dataset.index = index;
+  img.dataset.full = src; // Store the full-size image URL in a data attribute
+  img.loading = "lazy"; // Lazy load the gallery images
+  img.style.maxWidth = "200px"; // Limit display size in gallery
   gallery.appendChild(img);
 });
 
@@ -30,7 +33,8 @@ gallery.addEventListener('click', (e) => {
 
 function openModal(index) {
   modal.style.display = 'flex';
-  modalImg.src = imageFiles[index];
+  modalImg.src = ""; // Clear previous image first
+  modalImg.src = imageFiles[index]; // Load the full image dynamically
 }
 
 function closeModal() {
