@@ -12,13 +12,36 @@ let currentIndex = 0;
 // Show newest photos first
 imageFiles.reverse()
 // Populate the gallery using the imageFiles array (provided via Liquid)
-imageFiles.forEach((src, index) => {
-  const img = document.createElement('img');
-  img.src = src;
+// imageFiles.forEach((src, index) => {
+//   const img = document.createElement('img');
+//   img.src = src;
+//   img.alt = "Photo " + (index + 1);
+//   img.dataset.index = index;
+//   gallery.appendChild(img);
+// });
+
+function loadImageSequentially(index) {
+  if (index >= imageFiles.length) return; // Stop when no more images
+
+  // Create a new image element
+  const img = new Image();
+  img.src = imageFiles[index];
   img.alt = "Photo " + (index + 1);
-  img.dataset.index = index;
-  gallery.appendChild(img);
-});
+  
+  // When the image has loaded, append it to the gallery and load the next one
+  img.onload = () => {
+    gallery.appendChild(img);
+    loadImageSequentially(index + 1);
+  };
+  
+  // Optional: handle error loading image
+  img.onerror = () => {
+    console.error("Error loading image:", imageFiles[index]);
+    loadImageSequentially(index + 1);
+  };
+}
+
+loadImageSequentially(0);
 
 // Open modal when an image is clicked
 gallery.addEventListener('click', (e) => {
