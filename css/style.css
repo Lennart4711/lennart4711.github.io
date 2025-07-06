@@ -115,17 +115,17 @@ body {
       flex-direction: column;
       align-items: center; */
   }
+}
 
-  footer a {
-    color: inherit;
-    text-decoration: underline;
-    text-align: center;
-    padding: 40px 20px;
-  }
-  footer a:visited {
-    color: inherit;
-  }
-  footer a:hover {
-    color: #000;
-  }
+footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-align: center;
+  padding: 40px 20px;
+}
+footer a:visited {
+  color: inherit;
+}
+footer a:hover {
+  color: #000;
 }
