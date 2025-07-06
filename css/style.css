@@ -1,118 +1,133 @@
 /* Basic reset and typography */
 body {
-    margin: 0;
-    padding: 40px 0; /* Extra whitespace at top and bottom */
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #ededed;
-    color: #363636;
-    font-weight: 300;
-  }
-  
-  /* Page title styling */
-  .page-title {
-    font-size: 2.5rem;
-    text-align: center;
-    color: #363636;
-    font-weight: 400;
-    max-width: 60vw;
-    margin: 40px auto;
-  }
-  
-  /* Responsive gallery width */
-  .gallery {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 7px;
-    padding: 10px;
-  }
-  /* Restrict gallery width only on larger screens */
-  @media (min-width: 1600px) { /* Applies only for large screens */
-    .gallery {
-      max-width: 1400px; /* Adjust as needed */
-      margin: 0 auto; /* Centers the gallery */
-    }
-  }
+  margin: 0;
+  padding: 40px 0; /* Extra whitespace at top and bottom */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #ededed;
+  color: #363636;
+  font-weight: 300;
+}
 
-  /* Images maintain original aspect ratio with fixed height */
-  .gallery img {
-    height: 200px; /* Fixed preview height */
-    width: auto;   /* Preserve aspect ratio */
-    cursor: pointer;
-    transition: transform 0.2s;
+/* Page title styling */
+.page-title {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #363636;
+  font-weight: 400;
+  max-width: 60vw;
+  margin: 40px auto;
+}
+
+/* Responsive gallery width */
+.gallery {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px;
+}
+/* Restrict gallery width only on larger screens */
+@media (min-width: 1600px) {
+  /* Applies only for large screens */
+  .gallery {
+    max-width: 1400px; /* Adjust as needed */
+    margin: 0 auto; /* Centers the gallery */
   }
-  
-  .gallery img:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Modal overlay styles */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal img {
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
-    margin: auto;
-  }
-  
-  .modal-close {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 1001;
-    display: none;
-  }
-  
-  .modal-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 60px;
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
-    z-index: 1001;
-    padding: 10px;
-    display: none
-  }
-  
-  .modal-arrow.left {
-    left: 20px;
-  }
-  
-  .modal-arrow.right {
-    right: 20px;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    /* .gallery img {
+}
+
+/* Images maintain original aspect ratio with fixed height */
+.gallery img {
+  height: 200px; /* Fixed preview height */
+  width: auto; /* Preserve aspect ratio */
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Modal overlay styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  display: none;
+}
+
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  z-index: 1001;
+  padding: 10px;
+  display: none;
+}
+
+.modal-arrow.left {
+  left: 20px;
+}
+
+.modal-arrow.right {
+  right: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  /* .gallery img {
       width: 100%;
       height: auto;
     } */
 
-    .gallery {
-      margin: 0 auto;
-      padding: 0px;
-      /* display: flex;
+  .gallery {
+    margin: 0 auto;
+    padding: 0px;
+    /* display: flex;
       flex-direction: column;
       align-items: center; */
-    }
   }
-  
+
+  footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    padding: 40px 20px;
+    background-color: transparent;
+  }
+  footer a {
+    color: #666;
+    text-decoration: underline;
+  }
+  footer a:hover {
+    color: #000;
+  }
+}
