@@ -117,11 +117,13 @@ body {
   }
 }
 
+footer {
+  text-align: center;
+  padding: 40px 20px;
+}
 footer a {
   color: inherit;
   text-decoration: underline;
-  text-align: center;
-  padding: 40px 20px;
 }
 footer a:visited {
   color: inherit;
