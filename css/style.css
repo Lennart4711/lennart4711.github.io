@@ -117,8 +117,10 @@ body {
   }
 
   footer a {
-  color: inherit;
-  text-decoration: underline;
+    color: inherit;
+    text-decoration: underline;
+    text-align: center;
+    padding: 40px 20px;
   }
   footer a:visited {
     color: inherit;
@@ -126,16 +128,4 @@ body {
   footer a:hover {
     color: #000;
   }
-
-  <footer>
-  <p>
-    📸 Unless otherwise noted, all photos on this website are licensed under the
-    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">
-      Creative Commons License CC BY-NC-ND 4.0
-    </a>.<br>
-    They may be used for non-commercial purposes as long as they are not modified and credit is given to "Lennart".
-  </p>
-</footer>
-
-
 }
