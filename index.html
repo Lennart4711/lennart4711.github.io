@@ -2,55 +2,62 @@
 layout: null
 ---
 
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lennarts Portfolio</title>
-  <!-- Link to external CSS file -->
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-  <h1 class="page-title">Hey 👋 You found the photos of me, Lennart. Have a look around:</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lennarts Portfolio</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h1 class="page-title">
+      Hey 👋 You found the photos of me, Lennart. Have a look around:
+    </h1>
 
-  <!-- Gallery Container -->
-  <div class="gallery" id="gallery">
-    <!-- Images will be injected here by JavaScript -->
-  </div>
+    <!-- Gallery Container -->
+    <div class="gallery" id="gallery">
+      <!-- Images will be injected here by JavaScript -->
+    </div>
 
-  <!-- Modal for enlarged image view -->
-  <div id="modal" class="modal">
-    <span id="modal-close" class="modal-close">&times;</span>
-    <div id="modal-prev" class="modal-arrow left">&#10094;</div>
-    <img id="modal-img" src="" alt="Enlarged view" />
-    <div id="modal-next" class="modal-arrow right">&#10095;</div>
-  </div>
+    <!-- Modal for enlarged image view -->
+    <div id="modal" class="modal">
+      <span id="modal-close" class="modal-close">&times;</span>
+      <div id="modal-prev" class="modal-arrow left">&#10094;</div>
+      <img id="modal-img" src="" alt="Enlarged view" />
+      <div id="modal-next" class="modal-arrow right">&#10095;</div>
+    </div>
 
-  <!-- Liquid templating to list all images in /assets/images/to_display -->
-  {% assign photos = site.static_files | where_exp:"file", "file.path contains '/assets/images/to_display/'" %}
-  <script>
-    // Auto-populate imageFiles with the full path of every image found.
-    const imageFiles = [
-      {% for file in photos %}
-        "{{ file.path }}"{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ];
-  </script>
+    <!-- Liquid templating to list all images in /assets/images/to_display -->
+    {% assign photos = site.static_files | where_exp:"file", "file.path contains
+    '/assets/images/to_display/'" %}
+    <script>
+      // Auto-populate imageFiles with the full path of every image found.
+      const imageFiles = [
+        {% for file in photos %}
+          "{{ file.path }}"{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ];
+    </script>
 
-  <!-- Link to external JS file -->
-  <script src="js/main.js"></script>
+    <!-- Link to external JS file -->
+    <script src="js/main.js"></script>
 
-  <footer>
-  <p>
-    Unless otherwise noted, all photos on this website are licensed under the
-    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">
-      Creative Commons License CC BY-NC-ND 4.0
-    </a>.<br>
-    They may be used for non-commercial purposes as long as they are not modified and credit is given to "Lennart".
-  </p>
-</footer>
-
-</body>
+    <footer>
+      <p>
+        📸 Unless otherwise noted, all photos on this website are licensed under
+        the
+        <a
+          href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Creative Commons License CC BY-NC-ND 4.0 </a
+        >.<br />
+        They may be used for non-commercial purposes as long as they are not
+        modified and credit is given to "Lennart".
+      </p>
+    </footer>
+  </body>
 </html>

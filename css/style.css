@@ -116,18 +116,26 @@ body {
       align-items: center; */
   }
 
-  footer {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-    padding: 40px 20px;
-    background-color: transparent;
-  }
   footer a {
-    color: #666;
-    text-decoration: underline;
+  color: inherit;
+  text-decoration: underline;
+  }
+  footer a:visited {
+    color: inherit;
   }
   footer a:hover {
     color: #000;
   }
+
+  <footer>
+  <p>
+    📸 Unless otherwise noted, all photos on this website are licensed under the
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">
+      Creative Commons License CC BY-NC-ND 4.0
+    </a>.<br>
+    They may be used for non-commercial purposes as long as they are not modified and credit is given to "Lennart".
+  </p>
+</footer>
+
+
 }
